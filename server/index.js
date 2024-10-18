@@ -5,6 +5,7 @@ const registerRoutes = require("./routers/registerRoutes");
 const loginRoutes = require("./routers/loginRoutes");
 
 const app = express();
+const auth = require("./middlewares/authMiddleware");
 
 app.use(express.json());
 
