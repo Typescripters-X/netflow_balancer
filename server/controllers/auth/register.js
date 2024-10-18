@@ -5,7 +5,7 @@ const User = require("../../models/user");
 require("dotenv").config();
 
 const register = async (req, res) => {
-  const { name, mail, password, isAdmin } = req.body;
+  const { name, mail, password} = req.body;
 
   try {
     let user = await User.findOne({ mail });
@@ -20,7 +20,7 @@ const register = async (req, res) => {
       name,
       mail,
       password: hashedPassword,
-      isAdmin,
+      isAdmin: false,
     });
 
     await user.save();
