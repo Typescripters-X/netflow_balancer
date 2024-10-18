@@ -8,7 +8,7 @@ const HistorySchema = new mongoose.Schema(
       required: true,
     },
     requested_bw: { type: Number, required: true },
-    actual_bw: { type: Number, required: true },
+    allocated_bw: { type: Number, required: true },
     duaration : { type: Number, required: true },
   },
   { timestamps: true }
