@@ -1,4 +1,4 @@
-import { Router } from "express";
+const Router = require("express");
 
 const simulationRouter = Router();
 
@@ -125,4 +125,4 @@ simulationRouter.get("/", (req, res) => {
   sendData(); // Start sending data
 });
 
-export default simulationRouter;
+module.exports = simulationRouter;
