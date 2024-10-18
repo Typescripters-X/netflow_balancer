@@ -1,8 +1,8 @@
 const express = require('express')
 const path = require('path');
+const connectDB = require("./config/db");
 const app = express()
 
-const port = 3000
 
  
 // const FILES_DIR = "files"
@@ -52,9 +52,15 @@ app.get('/file', function (req, res) {
 
 
 
+connectDB()
+  .then(() => {
+   
+    app.listen(process.env.PORT , () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB. Server not started.", err);
+  });
 
 
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
