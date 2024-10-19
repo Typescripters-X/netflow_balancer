@@ -1,5 +1,6 @@
 const User = require("../../models/user");
 const History = require("../../models/history");
+const { convertToChartData } = require("../../utils/historyUtils");
 
 const getClientController = async (req, res) => {
   try {
@@ -9,7 +10,10 @@ const getClientController = async (req, res) => {
       return res.status(404).json({ message: "Client not found" });
     }
     const history = await History.find({ userId: _id });
-    res.status(200).json({ client, history });
+    const chartData = convertToChartData(history);
+    console.log(chartData); 
+    res.status(200).json({ client, history: chartData });
+    // res.status(200).json({ client, history });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ message: "Server error" });
