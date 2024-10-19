@@ -10,11 +10,11 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-  origin: 'http://localhost:5173/', 
+  origin: ['http://localhost:5173'], 
   methods: ['GET', 'POST', 'PUT', 'PATCH'], 
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 
