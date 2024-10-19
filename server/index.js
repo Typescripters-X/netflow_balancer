@@ -7,8 +7,6 @@ const clientsRoutes = require("./routers/clientsRoutes");
 const historyRoutes = require("./routers/historyRoutes");
 
 const app = express();
-const auth = require("./middlewares/authMiddleware");
-const isAdmin = require("./middlewares/isAdminMiddleware");
 const cors = require("cors");
 
 const corsOptions = {
