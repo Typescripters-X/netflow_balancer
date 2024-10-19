@@ -1,7 +1,5 @@
-// import { clientSchemaType } from "@/types/clientsSchema";
 import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
 import {
     Card,
     CardContent,
@@ -9,117 +7,102 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/UI/card"
-  import {
+} from "@/components/UI/card";
+import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-  } from "@/components/UI/chart"
+} from "@/components/UI/chart";
+import { ClientDetailsSchemaType } from "@/types/clientDetailsShema";
 
+type ClientDetailsChartProps = {
+    client: ClientDetailsSchemaType;
+};
 
-// type ClientDetailsChartProps = {
-//     client: clientSchemaType,
-// }
+const ClientDetailsChart = ({ client }: ClientDetailsChartProps) => {
+    // Map history to chart-friendly format
+    const chartData = client?.history?.map((entry) => ({
+        date: new Date(entry.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), // Format the date to display
+        requested: entry.requested_bw,
+        allocated: entry.allocated_bw,
+    }));
 
-const ClientDetailsChart = () => {
-    // const description = "A stacked area chart with expand stacking"
-    const chartData = [
-      { month: "January", desktop: 186, mobile: 80, other: 45 },
-      { month: "February", desktop: 305, mobile: 200, other: 100 },
-      { month: "March", desktop: 237, mobile: 120, other: 150 },
-      { month: "April", desktop: 73, mobile: 190, other: 50 },
-      { month: "May", desktop: 209, mobile: 130, other: 100 },
-      { month: "June", desktop: 214, mobile: 140, other: 160 },
-    ]
+    // Chart configuration
     const chartConfig = {
-      desktop: {
-        label: "Desktop",
-        color: "hsl(var(--chart-1))",
-      },
-      mobile: {
-        label: "Mobile",
-        color: "hsl(var(--chart-2))",
-      },
-      other: {
-        label: "Other",
-        color: "hsl(var(--chart-3))",
-      },
-    } satisfies ChartConfig
+        requested: {
+            label: "Requested BW",
+            color: "hsl(var(--chart-1))",
+        },
+        allocated: {
+            label: "Allocated BW",
+            color: "hsl(var(--chart-2))",
+        },
+    } satisfies ChartConfig;
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Area Chart - Stacked Expanded</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 6months
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-              top: 12,
-            }}
-            stackOffset="expand"
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
-            <Area
-              dataKey="other"
-              type="natural"
-              fill="var(--color-other)"
-              fillOpacity={0.1}
-              stroke="var(--color-other)"
-              stackId="a"
-            />
-            <Area
-              dataKey="mobile"
-              type="natural"
-              fill="var(--color-mobile)"
-              fillOpacity={0.4}
-              stroke="var(--color-mobile)"
-              stackId="a"
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
-              fillOpacity={0.4}
-              stroke="var(--color-desktop)"
-              stackId="a"
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
-            </div>
-          </div>
-        </div>
-      </CardFooter>
-    </Card>
-  )
-}
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Bandwidth Usage</CardTitle>
+                <CardDescription>Showing requested vs allocated bandwidth per day</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ChartContainer config={chartConfig}>
+                    <AreaChart
+                        accessibilityLayer
+                        data={chartData} // Use the mapped chart data
+                        margin={{
+                            left: 12,
+                            right: 12,
+                            top: 12,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                            dataKey="date" // Use the formatted date for x-axis
+                            tickLine={false}
+                            axisLine={false}
+                            tickMargin={8}
+                            // Directly display the date from the "createdAt" values
+                            tickFormatter={(value) => value} 
+                        />
+                        <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent indicator="line" />}
+                        />
+                        <Area
+                            dataKey="allocated"
+                            type="natural"
+                            fill="var(--color-allocated)"
+                            fillOpacity={0.4}
+                            stroke="var(--color-allocated)"
+                            stackId="a"
+                        />
+                        <Area
+                            dataKey="requested"
+                            type="natural"
+                            fill="var(--color-requested)"
+                            fillOpacity={0.4}
+                            stroke="var(--color-requested)"
+                            stackId="a"
+                        />
+                    </AreaChart>
+                </ChartContainer>
+            </CardContent>
+            <CardFooter>
+                <div className="flex w-full items-start gap-2 text-sm">
+                    <div className="grid gap-2">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+                        </div>
+                        <div className="flex items-center gap-2 leading-none text-muted-foreground">
+                            October 2024
+                        </div>
+                    </div>
+                </div>
+            </CardFooter>
+        </Card>
+    );
+};
 
 export default ClientDetailsChart;
