@@ -25,7 +25,7 @@ const ClientDetails = ({ client }: ClientDetailsProps) => {
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
             }`}
         >
-            <div className={`fixed right-2 top-3 w-[90%] 3xl:w-[14%] 3xl:h-[95.4%] h-[97%] 3xl:top-[7.2%] rounded-[8px] bg-white flex flex-col justify-between z-50 shadow-2xl border-[1px] border-gray-200`}
+            <div className={`fixed right-2 top-3 w-[90%] 3xl:w-[30%] 3xl:h-[95.4%] h-[97%] 3xl:top-[7.2%] rounded-[8px] bg-white flex flex-col justify-between z-50 shadow-2xl border-[1px] border-gray-200`}
             >
             <div className="w-full flex justify-between px-2 py-1 border-b-2 3xl:p-5">
             <div className="flex items-center gap-3"> 
