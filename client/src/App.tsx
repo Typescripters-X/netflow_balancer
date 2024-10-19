@@ -2,6 +2,7 @@ import React, { Suspense } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminSharedLayout from "./components/admin/shared/AdminSharedLayout";
+import AnalyticsPage from "./pages/admin/AnalyticsPage";
 
 
 const LoginPage = React.lazy(() => import("./pages/auth/LoginPage"));
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/dashboard" element={<AdminSharedLayout />}>
               <Route index element={<OverViewPage />} />
               <Route path="clients" element={<ClientsPage />} />
+              <Route path="analytics" element={<AnalyticsPage/>} />
             </Route>
           </Route>
           <Route path="*" element={<NotFoundPage />} />

@@ -5,7 +5,7 @@ import { columns } from "./Column";
 
 const Clients = () => {
     const { data: clients } = useClients();
-    console.log(clients, "clients");
+    // console.log(clients, "clients");
 
   return (
     <div className="container mx-auto py-10">

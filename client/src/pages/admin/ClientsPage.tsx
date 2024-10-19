@@ -7,7 +7,7 @@ import { useClientStore } from "@/store/clients/clientStore";
 const ClientsPage = () => {
   const { data: clients } = useClients();
   const { client } = useClientStore()
-  console.log(clients, "clients");
+  // console.log(clients, "clients");
 
 return (
   <div className="container mx-auto py-10">

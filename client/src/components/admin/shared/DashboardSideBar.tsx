@@ -20,13 +20,13 @@ const DashboardSideBar = () => {
     {
       name: "Analytics",
       icon: assets.analyticsIcon,
-      link: ".",
+      link: "analytics",
     },
   ];
 
   return (
     <>
-    <div className="fixed  md:w-[25%] lg:w-[20%] 2xl:w-[17%] 3xl:w-[14%] h-[99%] top-[0.5%] rounded-[8px] flex flex-col justify-between p-5 z-40 shadow-2xl border-[1px] border-gray-200 left-[5px]">
+    <div className=" fixed md:static md:h-screen hidden    md:w-[25%] lg:w-[20%] 2xl:w-[17%] 3xl:w-[14%] h-[99%]  top-[0.5%]  rounded-[8px] md:flex flex-col justify-between p-5 z-40 shadow-2xl border-[1px] border-gray-200 left-[5px]  ">
         <div className="flex flex-col gap-12">
             <Logo/>
             <SideBarElemelnts elements={menuItems} />

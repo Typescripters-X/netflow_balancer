@@ -21,7 +21,7 @@ const useLogin = () => {
   return useMutation({
     mutationFn: (data: loginSchemaType) => login(data),
     onSuccess: (data) => {
-        console.log(data);
+        // console.log(data);
         store_access_token(data?.token);
         store_user(data?.user);
         setTimeout(() => {
