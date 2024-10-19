@@ -24,6 +24,7 @@ const login = async (req, res) => {
         const payload = {
             user: {
                 id: user._id,
+                isAdmin: user.isAdmin,
             },
         };
 

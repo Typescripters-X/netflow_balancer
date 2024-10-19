@@ -7,9 +7,9 @@ const HistorySchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    max_bw: { type: Number, required: true },
     requested_bw: { type: Number, required: true },
-    actual_bw: { type: Number, required: true },
+    allocated_bw: { type: Number, required: true },
+    duaration : { type: Number, required: true },
   },
   { timestamps: true }
 );
