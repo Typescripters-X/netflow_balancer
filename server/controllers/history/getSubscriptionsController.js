@@ -4,7 +4,7 @@ const getSubscriptionsController = async (req, res) => {
     try {
         const subscriptions = await User.find({ isAdmin: false });
         const subscribersCount = subscriptions.length;
-        // get the list of where max_bw = 10 and max_bw = 20 and max_bw = 30 and max_bw = 40 and max_bw = 50
+        
         const ten = subscriptions.filter(subscription => subscription.max_bw === 10).length;
         const twenty = subscriptions.filter(subscription => subscription.max_bw === 20).length;
         const thirty = subscriptions.filter(subscription => subscription.max_bw === 30).length;
