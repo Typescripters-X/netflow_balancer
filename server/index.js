@@ -28,7 +28,7 @@ app.get("/test", (req, res) => {
 
 
 
-app.use("/simulate", simulationRouter);
+app.use("/api/v1/simulate", simulationRouter);
 app.use("/api/v1/register", registerRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1/clients", clientsRoutes);
