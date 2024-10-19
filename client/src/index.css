@@ -82,3 +82,113 @@ input::-ms-clear {
 .spin-button-none::-webkit-inner-spin-button {
   appearance: none;
 }
+
+
+
+/* Side Bar Elemets styles */
+.sideBar-link {
+  display: flex;
+  align-items: center;
+  color: #ADB5BD;
+  gap: 10px;
+  font-weight: 400;
+  padding: 7px 10px;
+  border-radius: 4px;
+  transition: all 200ms ease-in;
+  width: 100%;
+}
+
+.active-sideBar-link {
+  display: flex;
+  background-color: #C2545126;
+  align-items: center;
+  color: #C25451;
+  gap: 10px;
+  font-weight: 400;
+  padding: 7px 10px;
+  border-radius: 4px;
+  transition: all 200ms ease-in;
+  width: 100%;
+}
+
+
+
+.sideBar-link:hover{
+  background-color: #C2545126;
+  color: #C25451;
+}
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+}
+
+
+
+/* Fade-in and fade-out for the overlay */
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide-in and slide-out for the popup content */
+.slide-in {
+  animation: slideIn 0.4s ease forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
