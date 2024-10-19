@@ -22,7 +22,7 @@ const AuthenticatedCalls = {
     return response;
   },
 
-  async patchRequest({ url, data }: { url: string; data: any[] }): Promise<any> {
+  async patchRequest({ url, data }: { url: string; data: any }): Promise<any> {
     const access_token = useAuthStore.getState().access_token; // Get the access_token
     const response = await axiosPrivate.patch(url, data, {
       headers: {
@@ -31,6 +31,8 @@ const AuthenticatedCalls = {
     });
     return response;
   },
+
+
 
   async deleteRequest({ url }: { url: string }): Promise<any> {
     const access_token = useAuthStore.getState().access_token; // Get the access_token

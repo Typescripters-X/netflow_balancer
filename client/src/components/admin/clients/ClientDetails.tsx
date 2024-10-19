@@ -4,6 +4,7 @@ import { useAuthStore } from "@/store/login/authStore";
 import { useClientStore } from "@/store/clients/clientStore";
 import ClientDetailsChart from "./ClientDetailsChart";
 import useClient from "@/hooks/clients/useClient";
+import ControleBandwith from "./ControleBandwith";
 
 type ClientDetailsProps = {
     client: clientSchemaType;
@@ -37,10 +38,9 @@ const ClientDetails = ({ client }: ClientDetailsProps) => {
                     </button>
                 </div>
             </div>
-            <div className="w-full h-[77%] p-5 overflow-y-auto overflow-x-hidden">
-                <ClientDetailsChart 
-                // client={clientDetails}
-                 />
+            <div className="w-full h-[77%] p-5 overflow-y-auto overflow-x-hidden flex flex-col gap-4">
+                <ClientDetailsChart client={clientDetails} />
+                <ControleBandwith client={clientDetails} />
             </div>
             <div className=""></div>
             </div>
