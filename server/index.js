@@ -11,7 +11,12 @@ const auth = require("./middlewares/authMiddleware");
 const isAdmin = require("./middlewares/isAdminMiddleware");
 const cors = require("cors");
 
-app.use(cors());
+const corsOptions = {
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'PATCH'], 
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
