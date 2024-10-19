@@ -4,24 +4,30 @@ const connectDB = require("./config/db.js");
 const registerRoutes = require("./routers/registerRoutes");
 const loginRoutes = require("./routers/loginRoutes");
 const clientsRoutes = require("./routers/clientsRoutes");
-
+const historyRoutes = require("./routers/historyRoutes");
 
 const app = express();
 const auth = require("./middlewares/authMiddleware");
 const isAdmin = require("./middlewares/isAdminMiddleware");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.json());
 
 
 
-app.get("/test",isAdmin, (req, res) => {
-  res.json({ message: "You are an admin" });
+app.get("/test", (req, res) => {
+  res.json({ message: "hello world" });
 });
+
+
 
 app.use("/simulate", simulationRouter);
 app.use("/api/v1/register", registerRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1/clients", clientsRoutes);
+app.use("/api/v1/history", historyRoutes);
 
 connectDB()
   .then(() => {
