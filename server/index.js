@@ -14,7 +14,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'PATCH'], 
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
