@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const editClientController = async (req, res) => {
   const { _id } = req.params;
-  const { name, mail, password, max_bw } = req.body;
+  const { name, mail, password, max_bw, bw_setByAdmin } = req.body;
   try {
     const user = await User.findById(_id);
     if (!user) {
@@ -18,6 +18,7 @@ const editClientController = async (req, res) => {
       user.password = await bcrypt.hash(password, salt);
     }
     if (max_bw !== undefined) user.max_bw = max_bw;
+    if (bw_setByAdmin !== undefined) user.bw_setByAdmin = bw_setByAdmin;
 
     await user.save();
     res.json({ user });
