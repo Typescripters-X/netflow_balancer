@@ -38,14 +38,14 @@ async function simulationController(req, res) {
           currentAvailabeBandwith
         );
 
-        if (req.user.bw_setByAdmin !== 0) {  
+        if (req.user.bw_setByAdmin !== 0) {
           CLIENT_MAX_BANDWITH <= currentAvailabeBandwith
             ? (downloadedData += CLIENT_MAX_BANDWITH) // get his max bw
             : (downloadedData += currentAvailabeBandwith); // no available bandwith so he won't reach his max bw
         } else {
           downloadedData += req.user.bw_setByAdmin;
         }
-        
+
         steps++;
         setTimeout(sendData, 1000); // Send every 1 second just to visualize better the idea
       } else {
@@ -53,7 +53,9 @@ async function simulationController(req, res) {
         connectedClientCount--;
         const historyRecord = new History({
           userId: req.user._id,
-          requested_bw: req.query.requested_bw,
+          requested_bw: req.query.requested_bw
+            ? req.query.requested_bw
+            : CLIENT_MAX_BANDWITH,
           allocated_bw: FILE_SIZE / steps,
           duaration: new Date() - start,
         });
