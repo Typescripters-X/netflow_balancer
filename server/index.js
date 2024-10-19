@@ -7,8 +7,6 @@ const clientsRoutes = require("./routers/clientsRoutes");
 const historyRoutes = require("./routers/historyRoutes");
 
 const app = express();
-const auth = require("./middlewares/authMiddleware");
-const isAdmin = require("./middlewares/isAdminMiddleware");
 const cors = require("cors");
 
 const corsOptions = {
@@ -28,7 +26,7 @@ app.get("/test", (req, res) => {
 
 
 
-app.use("/simulate", simulationRouter);
+app.use("/api/v1/simulate", simulationRouter);
 app.use("/api/v1/register", registerRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1/clients", clientsRoutes);

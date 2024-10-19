@@ -38,10 +38,14 @@ async function simulationController(req, res) {
           currentAvailabeBandwith
         );
 
-        CLIENT_MAX_BANDWITH <= currentAvailabeBandwith
-          ? (downloadedData += CLIENT_MAX_BANDWITH) // get his max bw
-          : (downloadedData += currentAvailabeBandwith); // no available bandwith so he won't reach his max bw
-
+        if (req.user.bw_setByAdmin !== 0) {  
+          CLIENT_MAX_BANDWITH <= currentAvailabeBandwith
+            ? (downloadedData += CLIENT_MAX_BANDWITH) // get his max bw
+            : (downloadedData += currentAvailabeBandwith); // no available bandwith so he won't reach his max bw
+        } else {
+          downloadedData += req.user.bw_setByAdmin;
+        }
+        
         steps++;
         setTimeout(sendData, 1000); // Send every 1 second just to visualize better the idea
       } else {
@@ -63,7 +67,7 @@ async function simulationController(req, res) {
         );
 
         await historyRecord.save();
-        
+
         res.end(); // Close the connection after downloading finished
       }
     };
